@@ -1,73 +1,63 @@
-import 'package:charts_flutter/flutter.dart' as charts;
+
+import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'bar_chart_model.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-  final List<BarChartModel> data = [
-    BarChartModel(
-      year: "2014",
-      financial: 250,
-      color: charts.ColorUtil.fromDartColor(Colors.blueGrey),
-    ),
-    BarChartModel(
-      year: "2015",
-      financial: 300,
-      color: charts.ColorUtil.fromDartColor(Colors.red),
-    ),
-    BarChartModel(
-      year: "2016",
-      financial: 100,
-      color: charts.ColorUtil.fromDartColor(Colors.green),
-    ),
-    BarChartModel(
-      year: "2017",
-      financial: 450,
-      color: charts.ColorUtil.fromDartColor(Colors.yellow),
-    ),
-    BarChartModel(
-      year: "2018",
-      financial: 630,
-      color: charts.ColorUtil.fromDartColor(Colors.lightBlueAccent),
-    ),
-    BarChartModel(
-      year: "2019",
-      financial: 950,
-      color: charts.ColorUtil.fromDartColor(Colors.pink),
-    ),
-    BarChartModel(
-      year: "2020",
-      financial: 400,
-      color: charts.ColorUtil.fromDartColor(Colors.purple),
-    ),
+  List ranking = [
+    {'class': 'A', 'total': 23},
+    {'class': 'B', 'total': 14},
+    {'class': 'C', 'total': 8},
+    {'class': 'D', 'total': 7},
+    {'class': 'E', 'total': 21},
   ];
 
   @override
   Widget build(BuildContext context) {
-    List<charts.Series<BarChartModel, String>> series = [
-      charts.Series(
-        id: "financial",
-        data: data,
-        domainFn: (BarChartModel series, _) => series.year,
-        measureFn: (BarChartModel series, _) => series.financial,
-        colorFn: (BarChartModel series, _) => series.color,
-      ),
-    ];
-
+    // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Bar Chart"),
-        centerTitle: true,
-        backgroundColor: Colors.green[700],
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
-        child: charts.BarChart(
-          series,
-          animate: true,
+      appBar: AppBar(title: Text('D\'Chart')),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+
+            children: [
+              ListTile(
+                title: Text('Bar Chart'),
+                tileColor: Colors.green[200],
+              ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: DChartBar(
+                    data: [
+                      {
+                        'id': 'Bar',
+                        'data': [
+                          {'domain': '2020', 'measure': 3},
+                          {'domain': '2021', 'measure': 4},
+                          {'domain': '2022', 'measure': 6},
+                          {'domain': '2023', 'measure': 0.3},
+                        ],
+                      },
+                    ],
+                    domainLabelPaddingToAxisLine: 16,
+                    axisLineTick: 2,
+                    axisLinePointTick: 2,
+                    axisLinePointWidth: 10,
+                    axisLineColor: Colors.green,
+                    measureLabelPaddingToAxisLine: 16,
+                    barColor: (barData, index, id) => Colors.green,
+                    showBarValue: true,
+                  ),
+                ),
+              ),
+            ]
         ),
       ),
     );
   }
+
 }
