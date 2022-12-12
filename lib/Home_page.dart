@@ -31,8 +31,31 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.all(16),
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
+                  // child: DChartBarCustom(
+                  //  // showMeasureLabel:true ,
+                  //   spaceMeasureLinetoChart: 10.5,
+                  //   showDomainLine: true,
+                  //   showMeasureLine: true,
+                  //   showDomainLabel: true,
+                  //   showMeasureLabel: true,
+                  //   spaceBetweenItem: 5,
+                  //
+                  //   listData: [
+                  //     DChartBarDataCustom(
+                  //      // showValue: true,
+                  //       value: 13,
+                  //       label: 'Jan',
+                  //      // color: Colors.blue,
+                  //     ),
+                  //     DChartBarDataCustom(value: 20, label: 'Feb'),
+                  //     DChartBarDataCustom(value: 30, label: 'Mar'),
+                  //     DChartBarDataCustom(value: 40, label: 'Apr'),
+                  //     DChartBarDataCustom(value: 25, label: 'Mei'),
+                  //   ],
+                  //
+                  // ),
                   child: DChartBar(
-                    data: [
+                    data: const [
                       {
                         'id': 'Bar',
                         'data': [
@@ -45,11 +68,11 @@ class HomePage extends StatelessWidget {
                     ],
                     domainLabelPaddingToAxisLine: 16,
                     axisLineTick: 2,
-                    axisLinePointTick: 2,
+                   // axisLinePointTick: 2,
                     axisLinePointWidth: 10,
                     axisLineColor: Colors.green,
                     measureLabelPaddingToAxisLine: 16,
-                    barColor: (barData, index, id) => Colors.green,
+                    barColor: (barData, index, id) => Colors.amber,
                     showBarValue: true,
                   ),
                 ),
